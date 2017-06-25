@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import UnreadPosts from '../containers/UnreadPosts';
 
 const HelloMessage = styled.p`
   font-family: sans-serif;
@@ -7,5 +8,10 @@ const HelloMessage = styled.p`
 `;
 
 export default function App() {
-  return <HelloMessage>Hi, Pinboarder!</HelloMessage>;
+  return (
+    <div>
+      <HelloMessage>Hi, Pinboarder!</HelloMessage>
+      <UnreadPosts />
+    </div>
+  );
 }
