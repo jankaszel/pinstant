@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {compose} from 'ramda';
+import withSettings from './withSettings';
 import {gql, graphql} from 'react-apollo';
 
 function PostList({loading, posts}) {
@@ -32,14 +35,20 @@ const UnreadPosts = gql`
   }
 `;
 
-export default graphql(UnreadPosts, {
-  options: {
+const withData = graphql(UnreadPosts, {
+  options: ({settings}) => ({
     variables: {
-      apiToken: process.env.API_TOKEN,
+      apiToken: settings.apiToken,
     },
-  },
+  }),
   props: ({data: {loading, getUnreadPosts}}) => ({
     loading,
     posts: getUnreadPosts,
   }),
-})(PostList);
+});
+
+export default compose(
+  connect(state => state),
+  withData,
+  withSettings(true, '/setup')
+)(PostList);
