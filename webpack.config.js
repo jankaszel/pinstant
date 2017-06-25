@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const OfflinePlugin = require('offline-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const debug = process.env.NODE_ENV !== 'production';
@@ -20,7 +21,8 @@ const config = {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: ['react-hot-loader/webpack', 'babel-loader'],
+        exclude: /node_modules/,
       },
       {
         test: /\.html$/,
@@ -49,6 +51,7 @@ const config = {
   devServer: {
     contentBase: `${__dirname}/public`,
     port: 3000,
+    hot: true,
   },
 
   plugins: [
@@ -60,6 +63,17 @@ const config = {
     new HtmlWebpackPlugin({
       inject: 'body',
       template: `${__dirname}/index.html`,
+    }),
+
+    new OfflinePlugin({
+      excludes: ['**/*.map'],
+      updateStrategy: 'changed',
+      autoUpdate: 1000 * 60 * 2,
+
+      ServiceWorker: {
+        events: true,
+        navigateFallbackURL: '/',
+      },
     }),
   ],
 };
@@ -78,6 +92,9 @@ if (!debug) {
   ];
 
   prodPlugins.forEach(plugin => config.plugins.push(plugin));
+} else {
+  config.entry.unshift('react-hot-loader/patch');
+  config.plugins.push(new webpack.NamedModulesPlugin());
 }
 
 module.exports = config;

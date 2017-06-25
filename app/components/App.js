@@ -7,5 +7,5 @@ const HelloMessage = styled.p`
 `;
 
 export default function App() {
-  return <HelloMessage>Hi, Pinboard user!</HelloMessage>;
+  return <HelloMessage>Hi, Pinboarder!</HelloMessage>;
 }
