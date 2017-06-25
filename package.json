@@ -1,0 +1,18 @@
+{
+  "name": "pinboard-pwa",
+  "version": "0.1.0",
+  "description": "🗞",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fallafeljan/pinboard-pwa.git"
+  },
+  "author": "jk <58153@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fallafeljan/pinboard-pwa/issues"
+  },
+  "homepage": "https://github.com/fallafeljan/pinboard-pwa#readme"
+}
