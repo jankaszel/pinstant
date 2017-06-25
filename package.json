@@ -29,6 +29,7 @@
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "dotenv-webpack": "^1.5.0",
     "eslint": "^4.1.0",
     "eslint-plugin-react": "^7.1.0",
     "html-loader": "^0.4.5",
@@ -37,6 +38,7 @@
     "lint-staged": "^4.0.0",
     "offline-plugin": "^4.8.1",
     "react": "^15.6.1",
+    "react-apollo": "^1.4.2",
     "react-dom": "^15.6.1",
     "react-hot-loader": "^3.0.0-beta.7",
     "serve": "^6.0.0",
@@ -53,9 +55,12 @@
   },
   "babel": {
     "presets": [
-      ["es2015", {
-        "modules": false
-      }],
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ],
       "es2016",
       "es2017",
       "react"

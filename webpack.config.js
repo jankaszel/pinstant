@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const OfflinePlugin = require('offline-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DotEnvPlugin = require('dotenv-webpack');
 
 const debug = process.env.NODE_ENV !== 'production';
 
@@ -75,6 +76,8 @@ const config = {
         navigateFallbackURL: '/',
       },
     }),
+
+    new DotEnvPlugin(),
   ],
 };
 

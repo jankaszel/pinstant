@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {ApolloProvider} from 'react-apollo';
+import apolloClient from './apolloClient';
 import setupServiceWorker from './setupServiceWorker';
 import App from './components/App';
 
 function render(Component) {
-  ReactDOM.render(<Component />, document.getElementById('app'));
+  ReactDOM.render(
+    <ApolloProvider client={apolloClient}>
+      <Component />
+    </ApolloProvider>,
+    document.getElementById('app')
+  );
 }
 
 setupServiceWorker();
