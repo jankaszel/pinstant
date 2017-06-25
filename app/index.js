@@ -17,7 +17,7 @@ function render(Component) {
 setupServiceWorker();
 render(App);
 
-if (module.hot) {
+if (process.env.NODE_ENV !== 'production' && module.hot) {
   module.hot.accept('./components/App', () => {
     render(App);
   });
