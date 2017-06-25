@@ -36,15 +36,19 @@ const UnreadPosts = gql`
 `;
 
 const withData = graphql(UnreadPosts, {
-  options: {
+  options: ({settings}) => ({
     variables: {
-      apiToken: process.env.API_TOKEN,
+      apiToken: settings.apiToken,
     },
-  },
+  }),
   props: ({data: {loading, getUnreadPosts}}) => ({
     loading,
     posts: getUnreadPosts,
   }),
 });
 
-export default compose(withSettings, connect, withData)(PostList);
+export default compose(
+  connect(state => state),
+  withData,
+  withSettings(true, '/setup')
+)(PostList);
