@@ -1,7 +1,10 @@
+import {compose} from 'ramda';
 import {applyMiddleware, createStore, combineReducers} from 'redux';
 import {createLogger} from 'redux-logger';
+import persistState from 'redux-localstorage';
 import {settingsReducer} from './settingsStore';
 
+const initialState = {};
 const middleware = [];
 
 if (process.env.NODE_ENV !== 'production') {
@@ -13,6 +16,7 @@ export default function setupStore() {
     combineReducers({
       settings: settingsReducer,
     }),
-    applyMiddleware(...middleware)
+    initialState,
+    compose(applyMiddleware(...middleware), persistState())
   );
 }
