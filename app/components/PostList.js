@@ -1,13 +1,14 @@
 import React from 'react';
+import {gql, graphql} from 'react-apollo';
 
-export default function PostList({loading, posts}) {
+function PostList({loading, posts}) {
   if (loading) {
     return <p>Loading...</p>;
   } else if (posts) {
     return (
       <ul>
-        {posts.map(({href, description}, index) =>
-          <li key={index}>
+        {posts.map(({hash, href, description}) =>
+          <li key={hash}>
             <a href={href}>
               <em>{description}</em>
               <pre>{href}</pre>
@@ -20,3 +21,25 @@ export default function PostList({loading, posts}) {
     return <p>Nah.</p>;
   }
 }
+
+const UnreadPosts = gql`
+  query UnreadPosts($apiToken: String!) {
+    getUnreadPosts(apiToken: $apiToken) {
+      hash
+      href
+      description
+    }
+  }
+`;
+
+export default graphql(UnreadPosts, {
+  options: {
+    variables: {
+      apiToken: process.env.API_TOKEN,
+    },
+  },
+  props: ({data: {loading, getUnreadPosts}}) => ({
+    loading,
+    posts: getUnreadPosts,
+  }),
+})(PostList);
