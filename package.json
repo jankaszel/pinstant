@@ -1,0 +1,84 @@
+{
+  "name": "pinboard-pwa",
+  "version": "0.1.0",
+  "description": "🗞",
+  "scripts": {
+    "build": "rm -rf public/*; NODE_ENV=production webpack --progress",
+    "dev": "webpack-dev-server --progress",
+    "lint": "eslint --ignore-path .gitignore .",
+    "precommit": "lint-staged",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fallafeljan/pinboard-pwa.git"
+  },
+  "author": "jk <58153@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fallafeljan/pinboard-pwa/issues"
+  },
+  "homepage": "https://github.com/fallafeljan/pinboard-pwa#readme",
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.1.0",
+    "eslint-plugin-react": "^7.1.0",
+    "html-loader": "^0.4.5",
+    "html-webpack-plugin": "^2.29.0",
+    "husky": "^0.14.1",
+    "lint-staged": "^4.0.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "styled-components": "^2.1.0",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "lint",
+      "prettier --single-quote --trailing-comma es5 --no-bracket-spacing --write",
+      "git add"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "react"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "node": true
+    },
+    "plugins": [
+      "react"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "rules": {
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "react/prop-types": 1
+    }
+  }
+}
