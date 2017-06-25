@@ -6,6 +6,7 @@
     "build": "rm -rf public/*; NODE_ENV=production webpack --progress",
     "dev": "webpack-dev-server --progress",
     "lint": "eslint --ignore-path .gitignore .",
+    "precommit": "lint-staged",
     "test": "npm run lint"
   },
   "repository": {
@@ -28,11 +29,20 @@
     "eslint-plugin-react": "^7.1.0",
     "html-loader": "^0.4.5",
     "html-webpack-plugin": "^2.29.0",
+    "husky": "^0.14.1",
+    "lint-staged": "^4.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "styled-components": "^2.1.0",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.5.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "lint",
+      "prettier --single-quote --trailing-comma es5 --no-bracket-spacing --write",
+      "git add"
+    ]
   },
   "babel": {
     "presets": [
