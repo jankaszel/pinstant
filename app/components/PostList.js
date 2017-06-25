@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {compose} from 'ramda';
+import withSettings from './withSettings';
 import {gql, graphql} from 'react-apollo';
 
 function PostList({loading, posts}) {
@@ -32,7 +35,7 @@ const UnreadPosts = gql`
   }
 `;
 
-export default graphql(UnreadPosts, {
+const withData = graphql(UnreadPosts, {
   options: {
     variables: {
       apiToken: process.env.API_TOKEN,
@@ -42,4 +45,6 @@ export default graphql(UnreadPosts, {
     loading,
     posts: getUnreadPosts,
   }),
-})(PostList);
+});
+
+export default compose(withSettings, connect, withData)(PostList);
