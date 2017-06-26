@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server --progress --hot",
     "lint": "eslint --ignore-path .gitignore .",
     "precommit": "lint-staged",
-    "serve": "serve -p 3000 public/",
+    "start": "serve -p 3000 --single public/",
     "test": "npm run lint"
   },
   "repository": {
@@ -29,7 +29,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "dotenv-webpack": "^1.5.0",
+    "dotenv": "^4.0.0",
     "eslint": "^4.1.0",
     "eslint-plugin-react": "^7.1.0",
     "html-loader": "^0.4.5",

@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const OfflinePlugin = require('offline-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const DotEnvPlugin = require('dotenv-webpack');
+require('dotenv').config();
 
 const debug = process.env.NODE_ENV !== 'production';
 
@@ -62,6 +62,12 @@ const config = {
       debug,
     }),
 
+    new webpack.DefinePlugin({
+      'process.env': {
+        GRAPHQL_ENDPOINT: JSON.stringify(process.env.GRAPHQL_ENDPOINT),
+      },
+    }),
+
     new HtmlWebpackPlugin({
       inject: 'body',
       template: `${__dirname}/index.html`,
@@ -70,15 +76,13 @@ const config = {
     new OfflinePlugin({
       excludes: ['**/*.map'],
       updateStrategy: 'changed',
-      autoUpdate: 1000 * 60 * 2,
+      autoUpdate: debug ? 1000 * 60 * 2 : false,
 
       ServiceWorker: {
         events: true,
         navigateFallbackURL: '/',
       },
     }),
-
-    new DotEnvPlugin(),
   ],
 };
 
