@@ -1,4 +1,4 @@
-import {compose} from 'ramda';
+import {compose} from './ramda';
 import {applyMiddleware, createStore, combineReducers} from 'redux';
 import {createLogger} from 'redux-logger';
 import persistState from 'redux-localstorage';

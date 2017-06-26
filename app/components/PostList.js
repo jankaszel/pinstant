@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {compose} from 'ramda';
+import {compose} from '../ramda';
 import withSettings from './withSettings';
 import {gql, graphql} from 'react-apollo';
 

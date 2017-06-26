@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {bind, compose} from 'ramda';
+import {bind, compose} from '../ramda';
 import {connect} from 'react-redux';
 import {setSettings} from '../settingsStore';
 import withSettings from './withSettings';
